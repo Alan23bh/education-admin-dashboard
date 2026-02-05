@@ -1,0 +1,81 @@
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: #f6f7fb;
+}
+
+.sidebar {
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  padding: 16px;
+}
+
+.sidebar__brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+
+  .logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: #dbeafe;
+  }
+
+  .name {
+    display: grid;
+
+    span {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+  }
+}
+
+.nav {
+  display: grid;
+  gap: 8px;
+
+  a {
+    padding: 10px 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #111827;
+    opacity: 0.85;
+  }
+
+  a.active {
+    background: #e0f2fe;
+    opacity: 1;
+    font-weight: 600;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+
+  button {
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    cursor: pointer;
+  }
+}
+
+.content {
+  padding: 16px;
+}

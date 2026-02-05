@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<div class="login-wrap">
+  <div class="login-card">
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <h1>Lyman HS</h1>
+        <p>Teacher Portal</p>
+      </div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+      <label>
+        <span>Email</span>
+        <input type="email" formControlName="email" placeholder="teacher@lyman.edu" />
+      </label>
+
+      <label>
+        <span>Password</span>
+        <input type="password" formControlName="password" placeholder="••••••••" />
+      </label>
+
+      <button type="submit">Sign in</button>
+
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </form>
+  </div>
+</div>

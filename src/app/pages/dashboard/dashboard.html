@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<header class="page-header">
+  <h1>Dashboard</h1>
+  <p class="muted">KPI overview for Lyman HS</p>
+</header>
+
+<section class="kpi-grid">
+  <article class="kpi-card" *ngFor="let kpi of kpis">
+    <div class="kpi-top">
+      <p class="kpi-label">{{ kpi.label }}</p>
+      <p class="kpi-value">{{ kpi.value }}</p>
+    </div>
+
+    <p class="kpi-sub" *ngIf="kpi.sub">{{ kpi.sub }}</p>
+  </article>
+</section>

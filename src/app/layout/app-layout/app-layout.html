@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar__brand">
+      <div class="logo"></div>
+      <div class="name">
+        <strong>Lyman HS</strong>
+        <span>Teacher Portal</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a routerLink="/app/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/app/students" routerLinkActive="active">Students</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="title">Teacher Dashboard</div>
+      <button (click)="logout()">Logout</button>
+    </header>
+
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>
