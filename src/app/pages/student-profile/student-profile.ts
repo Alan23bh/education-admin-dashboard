@@ -9,20 +9,22 @@
 // export class StudentProfile {
 
 // }
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { StudentsService } from '../../core/data/students.service';
 
 @Component({
   selector: 'app-student-profile',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, RouterLink],
   templateUrl: './student-profile.html',
   styleUrl: './student-profile.scss',
 })
 export class StudentProfile {
-  id = 'unknown';
+  private route = inject(ActivatedRoute);
+  private students = inject(StudentsService);
 
-  constructor(private route: ActivatedRoute) {
-    this.id = this.route.snapshot.paramMap.get('id') ?? 'unknown';
-  }
+  id = computed(() => this.route.snapshot.paramMap.get('id') ?? '');
+  student = computed(() => this.students.getById(this.id()));
 }

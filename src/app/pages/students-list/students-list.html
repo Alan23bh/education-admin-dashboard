@@ -1,8 +1,101 @@
-<!DOCTYPE html>
-<h2>Students</h2>
-<p>Student table will go here.</p>
+<!-- <header class="page-header">
+  <h1>Students</h1>
+  <p class="muted">Roster for Lyman HS</p>
+</header>
 
-<ul>
-  <li><a routerLink="/app/students/1">Student #1</a></li>
-  <li><a routerLink="/app/students/2">Student #2</a></li>
-</ul>
+<section class="students-grid">
+  <a class="student-card" *ngFor="let s of students()" [routerLink]="['/app/students', s.id]">
+    <div class="top">
+      <h3>{{ s.firstName }} {{ s.lastName }}</h3>
+      <span class="badge" [class.risk]="s.status === 'at-risk'">
+        {{ s.status === 'at-risk' ? 'At Risk' : 'On Track' }}
+      </span>
+    </div>
+
+    <p class="muted">Grade {{ s.gradeLevel }} • GPA {{ s.gpa }}</p>
+    <p class="muted">Avg {{ s.avgGrade }}% • Attendance {{ s.attendanceRate }}%</p>
+  </a>
+</section> -->
+<header class="page-header">
+  <div>
+    <h1>Students</h1>
+    <p class="muted">Roster for Lyman HS</p>
+  </div>
+
+  <p class="meta">{{ countLabel() }}</p>
+</header>
+
+<section class="toolbar">
+  <div class="search">
+    <input
+      type="text"
+      [value]="query()"
+      (input)="query.set($any($event.target).value || '')"
+      placeholder="Search students by name…"
+      aria-label="Search students"
+    />
+    <button type="button" class="ghost" (click)="clearSearch()" [disabled]="!query()">Clear</button>
+  </div>
+
+  <div class="controls">
+    <div class="segmented" role="tablist" aria-label="Filter students">
+      <button type="button" [class.active]="filter() === 'all'" (click)="setFilter('all')">
+        All
+      </button>
+      <button
+        type="button"
+        [class.active]="filter() === 'on-track'"
+        (click)="setFilter('on-track')"
+      >
+        On track
+      </button>
+      <button type="button" [class.active]="filter() === 'at-risk'" (click)="setFilter('at-risk')">
+        At risk
+      </button>
+    </div>
+
+    <label class="select">
+      <span class="muted">Sort</span>
+      <select [value]="sort()" (change)="sort.set($any($event.target).value)">
+        <option value="avgGrade">Avg Grade (desc)</option>
+        <option value="attendanceRate">Attendance (desc)</option>
+        <option value="gpa">GPA (desc)</option>
+      </select>
+    </label>
+  </div>
+</section>
+
+<section class="students-grid" *ngIf="filtered().length > 0; else empty">
+  <a class="student-card" *ngFor="let s of filtered()" [routerLink]="['/app/students', s.id]">
+    <div class="top">
+      <h3>{{ s.firstName }} {{ s.lastName }}</h3>
+
+      <span class="badge" [class.risk]="s.status === 'at-risk'">
+        {{ s.status === 'at-risk' ? 'At Risk' : 'On Track' }}
+      </span>
+    </div>
+
+    <p class="muted">Grade {{ s.gradeLevel }} • GPA {{ s.gpa }}</p>
+    <p class="muted">Avg {{ s.avgGrade }}% • Attendance {{ s.attendanceRate }}%</p>
+
+    <div class="footer">
+      <span class="muted">Last active: {{ s.lastActive }}</span>
+      <span class="link">View profile →</span>
+    </div>
+  </a>
+</section>
+
+<ng-template #empty>
+  <div class="empty">
+    <h3>No results found</h3>
+    <p class="muted">
+      No students match <strong *ngIf="query() as q">“{{ q }}”</strong>. Try clearing search or
+      changing filters.
+    </p>
+
+    <div class="empty-actions">
+      <button class="btn" type="button" (click)="clearSearch()">Clear search</button>
+      <!-- <button class="btn ghost" type="button" (click)="setFilter('all')">Show all</button> -->
+    </div>
+  </div>
+</ng-template>

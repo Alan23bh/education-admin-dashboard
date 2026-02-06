@@ -57,3 +57,32 @@
     grid-column: span 4;
   }
 }
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.muted {
+  color: #6b7280;
+}
+
+.activity {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

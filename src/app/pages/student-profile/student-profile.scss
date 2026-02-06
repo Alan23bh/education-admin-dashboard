@@ -1,0 +1,128 @@
+/* Student Profile page styling (matches dashboard + student cards) */
+
+:host {
+  display: block;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.25rem 0 1rem;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.35rem 0.6rem;
+  transition: background 120ms ease, color 120ms ease;
+
+  &:hover {
+    background: rgba(37, 99, 235, 0.08);
+  }
+}
+
+.page-header {
+  margin-bottom: 1rem;
+
+  h1 {
+    margin: 0;
+    font-size: clamp(1.6rem, 2vw, 2.2rem);
+    letter-spacing: -0.02em;
+  }
+
+  .muted {
+    margin-top: 0.25rem;
+  }
+}
+
+.muted {
+  color: #6b7280;
+}
+
+.profile-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: start;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+
+  h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.05rem;
+  }
+}
+
+/* Overview section: make the stats feel like “KPIs” */
+.stats {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.stat-label {
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.stat-value {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+/* Badge for status, if you choose to add it later */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+
+  &.on-track {
+    background: rgba(16, 185, 129, 0.12);
+    color: #047857;
+    border-color: rgba(16, 185, 129, 0.22);
+  }
+
+  &.at-risk {
+    background: rgba(239, 68, 68, 0.12);
+    color: #b91c1c;
+    border-color: rgba(239, 68, 68, 0.22);
+  }
+}
+
+/* Small activity list (future-proof for Phase 3) */
+.activity {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+
+  li {
+    margin: 0.35rem 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}

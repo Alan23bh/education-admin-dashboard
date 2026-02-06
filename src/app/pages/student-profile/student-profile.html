@@ -1,5 +1,41 @@
-<!DOCTYPE html>
-<h2>Student Profile</h2>
-<p>
-  Student ID: <strong>{{ id }}</strong>
-</p>
+<a class="back" routerLink="/app/students">← Back to Students</a>
+
+<section *ngIf="student() as s; else notFound">
+  <header class="page-header">
+    <h1>{{ s.firstName }} {{ s.lastName }}</h1>
+    <p class="muted">Grade {{ s.gradeLevel }} • {{ s.status }}</p>
+  </header>
+
+  <div class="profile-grid">
+    <div class="panel">
+      <h3>Overview</h3>
+
+      <div class="stats">
+        <div class="stat-row">
+          <span class="stat-label">GPA</span>
+          <span class="stat-value">{{ s.gpa }}</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Average Grade</span>
+          <span class="stat-value">{{ s.avgGrade }}%</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Attendance</span>
+          <span class="stat-value">{{ s.attendanceRate }}%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Recent Activity</h3>
+      <p class="muted">Last active: {{ s.lastActive }}</p>
+      <p class="muted">(Phase 3: real grade/attendance entries)</p>
+    </div>
+  </div>
+</section>
+
+<ng-template #notFound>
+  <p class="muted">Student not found.</p>
+</ng-template>

@@ -1,16 +1,35 @@
-<!DOCTYPE html>
 <header class="page-header">
   <h1>Dashboard</h1>
   <p class="muted">KPI overview for Lyman HS</p>
 </header>
 
 <section class="kpi-grid">
-  <article class="kpi-card" *ngFor="let kpi of kpis">
+  <article class="kpi-card" *ngFor="let kpi of kpis()">
     <div class="kpi-top">
       <p class="kpi-label">{{ kpi.label }}</p>
       <p class="kpi-value">{{ kpi.value }}</p>
     </div>
 
-    <p class="kpi-sub" *ngIf="kpi.sub">{{ kpi.sub }}</p>
+    <p class="kpi-sub" *ngIf="kpi.hint">{{ kpi.hint }}</p>
   </article>
+</section>
+<section class="grid">
+  <div class="panel">
+    <h3>Attendance Trend</h3>
+    <p class="muted">Chart goes here (Phase 3).</p>
+  </div>
+
+  <div class="panel">
+    <h3>Grade Distribution</h3>
+    <p class="muted">Chart goes here (Phase 3).</p>
+  </div>
+
+  <div class="panel">
+    <h3>Recent Activity</h3>
+    <ul class="activity">
+      <li><strong>Ava Nguyen</strong> marked absent — Period 2</li>
+      <li><strong>Ethan Brown</strong> late submission — Algebra</li>
+      <li><strong>James Williams</strong> flagged at-risk — average 69%</li>
+    </ul>
+  </div>
 </section>
