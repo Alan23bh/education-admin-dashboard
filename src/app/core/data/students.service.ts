@@ -8,10 +8,13 @@ const MOCK: Student[] = [
     lastName: 'Nguyen',
     gradeLevel: 10,
     gpa: 3.6,
-    avgGrade: 88,
+    avgGrade: 95,
     attendanceRate: 94,
     status: 'on-track',
     lastActive: '2h ago',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: false,
   },
   {
     id: '2',
@@ -23,6 +26,9 @@ const MOCK: Student[] = [
     attendanceRate: 86,
     status: 'at-risk',
     lastActive: 'Yesterday',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: false,
   },
   {
     id: '3',
@@ -34,6 +40,9 @@ const MOCK: Student[] = [
     attendanceRate: 82,
     status: 'at-risk',
     lastActive: 'Today',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: true,
   },
   {
     id: '4',
@@ -45,6 +54,9 @@ const MOCK: Student[] = [
     attendanceRate: 97,
     status: 'on-track',
     lastActive: '1h ago',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: false,
   },
   {
     id: '5',
@@ -56,6 +68,9 @@ const MOCK: Student[] = [
     attendanceRate: 88,
     status: 'at-risk',
     lastActive: '3 days ago',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: false,
   },
   {
     id: '6',
@@ -67,6 +82,9 @@ const MOCK: Student[] = [
     attendanceRate: 92,
     status: 'on-track',
     lastActive: 'Today',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: false,
   },
   {
     id: '7',
@@ -78,6 +96,9 @@ const MOCK: Student[] = [
     attendanceRate: 90,
     status: 'on-track',
     lastActive: 'Yesterday',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: false,
   },
   {
     id: '8',
@@ -89,6 +110,9 @@ const MOCK: Student[] = [
     attendanceRate: 84,
     status: 'at-risk',
     lastActive: 'Today',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: false,
   },
   {
     id: '9',
@@ -100,6 +124,9 @@ const MOCK: Student[] = [
     attendanceRate: 95,
     status: 'on-track',
     lastActive: '2 days ago',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: false,
   },
   {
     id: '10',
@@ -107,12 +134,14 @@ const MOCK: Student[] = [
     lastName: 'Davis',
     gradeLevel: 11,
     gpa: 2.2,
-    avgGrade: 68,
+    avgGrade: 82,
     attendanceRate: 80,
     status: 'at-risk',
     lastActive: 'Today',
+
+    assignmentsDueNext7: 0,
+    isAtRisk: false,
   },
-  // add 7 more...
 ];
 
 @Injectable({ providedIn: 'root' })

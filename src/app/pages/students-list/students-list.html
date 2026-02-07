@@ -70,8 +70,11 @@
     <div class="top">
       <h3>{{ s.firstName }} {{ s.lastName }}</h3>
 
-      <span class="badge" [class.risk]="s.status === 'at-risk'">
+      <!-- <span class="badge" [class.risk]="s.status === 'at-risk'">
         {{ s.status === 'at-risk' ? 'At Risk' : 'On Track' }}
+      </span> -->
+      <span class="badge" [class.risk]="s.avgGrade < 70">
+        {{ s.avgGrade &lt; 70 ? 'At Risk' : 'On Track' }}
       </span>
     </div>
 

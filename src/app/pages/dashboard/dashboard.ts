@@ -26,7 +26,8 @@
 // }
 import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SchoolData } from '../../core/data/school-data';
+
+import { StudentsService } from '../../core/data/students.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,16 +37,16 @@ import { SchoolData } from '../../core/data/school-data';
   styleUrl: './dashboard.scss',
 })
 export class Dashboard {
-  private data = inject(SchoolData);
+  private data = inject(StudentsService);
 
-  students = computed(() => this.data.getStudents());
+  students = computed(() => this.data.students());
 
   totalStudents = computed(() => this.students().length);
 
   averageGrade = computed(() => {
     const s = this.students();
     if (!s.length) return 0;
-    const avg = s.reduce((sum, x) => sum + x.average, 0) / s.length;
+    const avg = s.reduce((sum, x) => sum + x.avgGrade, 0) / s.length;
     return Math.round(avg);
   });
 

@@ -1,6 +1,8 @@
 export type StudentStatus = 'on-track' | 'at-risk';
 
 export interface Student {
+  assignmentsDueNext7: number;
+  isAtRisk: boolean;
   id: string;
   firstName: string;
   lastName: string;

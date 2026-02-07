@@ -18,6 +18,9 @@ export class StudentsList {
   private studentsService = inject(StudentsService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private riskStatus(s: Student): StudentStatus {
+    return s.avgGrade < 70 ? 'at-risk' : 'on-track';
+  }
 
   // UI state
   query = signal('');
@@ -65,7 +68,7 @@ export class StudentsList {
     let list = this.students();
 
     // filter
-    if (f !== 'all') list = list.filter((s) => s.status === f);
+    if (f !== 'all') list = list.filter((s) => this.riskStatus(s) === f);
 
     // search
     if (q) {
