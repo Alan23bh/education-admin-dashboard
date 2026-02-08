@@ -14,22 +14,87 @@
   </article>
 </section>
 <section class="grid">
-  <div class="panel">
+  <section class="panel">
     <h3>Attendance Trend</h3>
-    <p class="muted">Chart goes here (Phase 3).</p>
-  </div>
+    <p class="muted small">Last {{ attendanceWindowDays }} days (present + tardy)</p>
+
+    <apx-chart
+      [series]="attendanceSeries()"
+      [chart]="attendanceChart()"
+      [stroke]="attendanceStroke()"
+      [dataLabels]="attendanceDataLabels()"
+      [tooltip]="attendanceTooltip()"
+      [xaxis]="attendanceXAxis()"
+      [yaxis]="attendanceYAxis()"
+    ></apx-chart>
+  </section>
+  <section class="panel">
+    <h3>At-Risk Students</h3>
+    <p class="muted small">Auto-flagged from KPIs</p>
+
+    <div class="table" *ngIf="atRiskList().length; else noneRisk">
+      <div class="thead">
+        <div>Student</div>
+        <div>Avg</div>
+        <div>Attendance</div>
+        <div>Reason</div>
+      </div>
+
+      <div class="trow" *ngFor="let row of atRiskList()">
+        <div class="cell strong">{{ row.s.firstName }} {{ row.s.lastName }}</div>
+        <div class="cell">{{ row.s.avgGrade }}%</div>
+        <div class="cell">{{ row.s.attendanceRate }}%</div>
+        <div class="cell muted">{{ row.reason.join(' • ') }}</div>
+      </div>
+    </div>
+
+    <ng-template #noneRisk>
+      <p class="muted">No students currently flagged.</p>
+    </ng-template>
+  </section>
 
   <div class="panel">
     <h3>Grade Distribution</h3>
-    <p class="muted">Chart goes here (Phase 3).</p>
+    <p class="muted small">Buckets by average grade</p>
+
+    <apx-chart
+      [chart]="gradeChart()"
+      [series]="gradeDonutSeries()"
+      [labels]="gradeDonutLabels"
+      [tooltip]="gradeTooltip()"
+    ></apx-chart>
   </div>
 
   <div class="panel">
     <h3>Recent Activity</h3>
-    <ul class="activity">
-      <li><strong>Ava Nguyen</strong> marked absent — Period 2</li>
-      <li><strong>Ethan Brown</strong> late submission — Algebra</li>
-      <li><strong>James Williams</strong> flagged at-risk — average 69%</li>
+
+    <ul class="activity" *ngIf="recentActivity().length; else noActivity">
+      <li *ngFor="let a of recentActivity()">
+        <strong>{{ a.studentName }}</strong>
+        {{ activityText(a) }}
+        <span class="muted">— {{ timeAgo(a.timestamp) }}</span>
+      </li>
     </ul>
+
+    <ng-template #noActivity>
+      <p class="muted">No activity yet. Add a grade or mark attendance to start the feed.</p>
+    </ng-template>
+  </div>
+</section>
+<section class="panel">
+  <h3>Top 5 Students</h3>
+  <p class="muted small">Ranked by average grade</p>
+
+  <div class="bars">
+    <div class="bar-row" *ngFor="let s of top5ByAvg()">
+      <div class="bar-label">
+        <span class="name">{{ s.firstName }} {{ s.lastName }}</span>
+        <span class="muted">{{ s.avgGrade }}%</span>
+      </div>
+
+      <div class="bar-track">
+        <div class="bar-fill" [style.width.%]="s.avgGrade"></div>
+      </div>
+    </div>
   </div>
 </section>

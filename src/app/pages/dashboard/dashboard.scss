@@ -86,3 +86,75 @@
     grid-template-columns: 1fr;
   }
 }
+.small {
+  font-size: 0.9rem;
+}
+
+.bars {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.bar-row {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.name {
+  font-weight: 800;
+}
+
+.bar-track {
+  height: 10px;
+  border-radius: 999px;
+  background: #eef2f7;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #2563eb; // matches your blue
+}
+
+.table {
+  margin-top: 0.75rem;
+  border: 1px solid #eef2f7;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.thead,
+.trow {
+  display: grid;
+  grid-template-columns: 1.6fr 0.6fr 0.9fr 1.6fr;
+  gap: 0.75rem;
+  padding: 0.65rem 0.8rem;
+  align-items: center;
+}
+
+.thead {
+  background: #f9fafb;
+  font-weight: 800;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.trow {
+  background: #fff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.trow:last-child {
+  border-bottom: none;
+}
+
+.strong {
+  font-weight: 800;
+}

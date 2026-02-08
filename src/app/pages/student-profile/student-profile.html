@@ -28,10 +28,75 @@
       </div>
     </div>
 
+    <!-- Attendance -->
     <div class="panel">
-      <h3>Recent Activity</h3>
-      <p class="muted">Last active: {{ s.lastActive }}</p>
-      <p class="muted">(Phase 3: real grade/attendance entries)</p>
+      <h3>Attendance</h3>
+
+      <div class="row">
+        <button class="btn" type="button" (click)="mark('present')">Present</button>
+        <button class="btn" type="button" (click)="mark('tardy')">Tardy</button>
+        <button class="btn danger" type="button" (click)="mark('absent')">Absent</button>
+      </div>
+
+      <p class="muted small">Today’s mark overwrites today if you click again.</p>
+
+      <ul class="list" *ngIf="s.attendanceEntries.length; else noAttendance">
+        <li *ngFor="let a of s.attendanceEntries | slice:0:8">
+          <span class="pill">{{ a.status }}</span>
+          <span class="muted">{{ a.date }}</span>
+          <button class="icon" type="button" (click)="deleteAttendance(a.id)">Remove</button>
+        </li>
+      </ul>
+
+      <ng-template #noAttendance>
+        <p class="muted">No attendance entries yet.</p>
+      </ng-template>
+    </div>
+
+    <!-- Grades -->
+    <div class="panel" style="grid-column: 1 / -1">
+      <h3>Grades</h3>
+
+      <div class="row">
+        <label class="field">
+          <span class="muted">Type</span>
+          <select [value]="gradeCategory()" (change)="gradeCategory.set($any($event.target).value)">
+            <option value="homework">Homework</option>
+            <option value="quiz">Quiz</option>
+            <option value="classwork">Classwork</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="muted">Percent</span>
+          <input
+            type="number"
+            min="0"
+            max="100"
+            [value]="gradePercent()"
+            (input)="gradePercent.set(+$any($event.target).value)"
+          />
+        </label>
+
+        <button class="btn" type="button" (click)="addGrade()">Add grade</button>
+      </div>
+
+      <div class="table" *ngIf="s.gradeEntries.length; else noGrades">
+        <div class="thead">
+          <span>Date</span><span>Type</span><span>Score</span><span></span>
+        </div>
+
+        <div class="trow" *ngFor="let g of s.gradeEntries | slice:0:10">
+          <span class="muted">{{ g.date }}</span>
+          <span>{{ g.category }}</span>
+          <span><strong>{{ g.percent }}%</strong></span>
+          <button class="icon" type="button" (click)="deleteGrade(g.id)">Remove</button>
+        </div>
+      </div>
+
+      <ng-template #noGrades>
+        <p class="muted">No grade entries yet.</p>
+      </ng-template>
     </div>
   </div>
 </section>
