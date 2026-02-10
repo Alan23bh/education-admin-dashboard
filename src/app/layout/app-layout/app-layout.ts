@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Auth } from '../../core/auth/auth';
+import { signal } from '@angular/core';
 
 @Component({
   selector: 'app-app-layout',
@@ -27,5 +28,14 @@ export class AppLayout {
   logout(): void {
     this.auth.logout();
     this.router.navigateByUrl('/login');
+  }
+  sidebarOpen = signal(false);
+
+  toggleSidebar() {
+    this.sidebarOpen.update((v) => !v);
+  }
+
+  closeSidebar() {
+    this.sidebarOpen.set(false);
   }
 }

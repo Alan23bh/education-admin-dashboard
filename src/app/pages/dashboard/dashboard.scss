@@ -59,7 +59,7 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); // ✅ prevents cutoff
   gap: 16px;
   margin-top: 16px;
 }
@@ -128,7 +128,7 @@
   margin-top: 0.75rem;
   border: 1px solid #eef2f7;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .thead,
@@ -157,4 +157,7 @@
 
 .strong {
   font-weight: 800;
+}
+.panel {
+  min-width: 0; // ✅ lets charts shrink inside
 }

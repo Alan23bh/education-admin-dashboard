@@ -1,23 +1,56 @@
 <!DOCTYPE html>
 <div class="shell">
-  <aside class="sidebar">
+  <button
+    class="overlay"
+    type="button"
+    *ngIf="sidebarOpen()"
+    (click)="closeSidebar()"
+    aria-label="Close menu"
+  ></button>
+
+  <aside class="sidebar" [class.open]="sidebarOpen()">
     <div class="sidebar__brand">
       <div class="logo"></div>
       <div class="name">
         <strong>Lyman HS</strong>
         <span>Teacher Portal</span>
       </div>
+      <button
+        class="icon-btn close-btn"
+        type="button"
+        (click)="closeSidebar()"
+        aria-label="Close menu"
+      >
+        ✕
+      </button>
     </div>
 
     <nav class="nav">
-      <a routerLink="/app/dashboard" routerLinkActive="active">Dashboard</a>
-      <a routerLink="/app/students" routerLinkActive="active">Students</a>
+      <a routerLink="/app/dashboard" routerLinkActive="active" (click)="closeSidebar()">
+        Dashboard
+      </a>
+
+      <a routerLink="/app/students" routerLinkActive="active" (click)="closeSidebar()">
+        Students
+      </a>
     </nav>
   </aside>
 
   <main class="main">
     <header class="topbar">
-      <div class="title">Teacher Dashboard</div>
+      <div class="left">
+        <button
+          class="icon-btn menu-btn"
+          type="button"
+          (click)="toggleSidebar()"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+        <div class="title">Teacher Dashboard</div>
+      </div>
+
       <button (click)="logout()">Logout</button>
     </header>
 
