@@ -1,59 +1,133 @@
-# TeacherDashboard
+# Education Analytics Admin Dashboard (Teacher Portal)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+A modern, responsive **Angular dashboard** designed for educators to monitor student performance, attendance trends, and risk indicators in real time.
 
-## Development server
+This project simulates a real-world school admin/teacher portal with interactive data visualization, clean UI architecture, and state-driven updates — built as a portfolio case study for frontend engineering roles.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## ✨ Features
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **KPI Overview**
+  - Total students
+  - Average grade
+  - Attendance rate
+  - At-risk student count
 
-## Code scaffolding
+- **Attendance Trend Visualization**
+  - Line chart showing attendance percentage over time
+  - Built with ApexCharts
+  - Automatically recalculates as attendance data changes
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Grade Distribution**
+  - Donut chart grouping students by grade ranges (A / B / C / D-F)
 
-```bash
-ng generate component component-name
-```
+- **Top 5 Students**
+  - Ranked by average grade
+  - Pure CSS progress bars (no chart library)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **At-Risk Students Table**
+  - Auto-flagging based on grade and attendance thresholds
+  - Clear severity ordering and reason indicators
 
-```bash
-ng generate --help
-```
+- **Recent Activity Feed**
+  - Real activity log generated from CRUD actions
+  - Tracks grade updates and attendance changes
+  - Displays human-readable timestamps (e.g. “5m ago”)
 
-## Building
+- **Responsive Layout**
+  - Desktop-first dashboard
+  - Mobile drawer sidebar with hamburger toggle
+  - Fully usable on tablet and phone viewports
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🧠 What This Project Demonstrates
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Strong **Angular fundamentals**:
+  - Standalone components
+  - Signals (`signal`, `computed`, `effect`)
+  - Dependency injection
+  - Component-driven architecture
 
-## Running unit tests
+- **State management without external libraries**
+  - Centralized data service
+  - Derived state via computed signals
+  - Persistent state using `localStorage`
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- **Data-driven UI**
+  - Charts update automatically from state
+  - Risk detection logic separated from presentation
+  - Realistic dashboard behavior without mock-only UI
 
-```bash
-ng test
-```
+- **Responsive UI & layout architecture**
+  - CSS Grid + Flexbox
+  - Mobile sidebar drawer pattern
+  - Adaptive dashboard layout
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 🛠️ Tech Stack
 
-```bash
-ng e2e
-```
+- **Framework:** Angular 21
+- **Language:** TypeScript
+- **Charts:** ApexCharts / ng-apexcharts
+- **Styling:** SCSS, CSS Grid, Flexbox
+- **State:** Angular Signals
+- **Deployment:** Vercel
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 🚀 Live Demo
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+🔗 **Live Site:**  
+https://education-admin-dashboard.vercel.app
+
+> Best experienced on desktop, but fully functional on mobile.
+
+---
+
+---
+
+## 🧪 Notes & Tradeoffs
+
+- This project focuses on **frontend architecture and UX**, not backend integration.
+- Data is stored locally to simulate a real admin workflow.
+- Authentication is mocked for demo purposes.
+- Assignment tracking is planned as a future enhancement.
+
+---
+
+## 📈 Future Improvements
+
+- Settings / preferences page
+- Role-based access (teacher vs admin)
+- Backend integration (REST or Firebase)
+- Exportable reports (CSV / PDF)
+- Dark mode
+
+---
+
+## 👤 Author
+
+**Alan Hernandez**  
+Frontend Developer
+
+- GitHub: https://github.com/Alan23bh
+- LinkedIn: *(https://www.linkedin.com/in/alan-hernandez-aa8458326/)*
+
+---
+
+## 📝 Why This Project Exists
+
+This dashboard was built as a **case study** to demonstrate how a frontend developer approaches:
+- real-world data modeling
+- UI composition
+- responsive layouts
+- maintainable application structure
+
+It reflects how I build production-ready interfaces, not just visual demos.
+
+
+
+
