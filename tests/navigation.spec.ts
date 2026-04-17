@@ -8,7 +8,7 @@ test('sidebar navigation: dashboard -> students -> dashboard', async ({ page }) 
   await page.getByRole('link', { name: /^students$/i }).click();
   await expect(page).toHaveURL(/\/app\/students/);
 
-  // "Students" page should show a page heading (adjust if yours differs)
+  // "Students" page should show a page heading
   await expect(page.getByRole('heading', { name: /students/i })).toBeVisible();
 
   // Back to Dashboard
@@ -18,3 +18,4 @@ test('sidebar navigation: dashboard -> students -> dashboard', async ({ page }) 
   // Dashboard heading visible
   await expect(page.getByRole('heading', { name: /^dashboard$/i })).toBeVisible();
 });
+//This is a navigation / routing test.

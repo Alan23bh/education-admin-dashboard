@@ -17,3 +17,9 @@ test('logout returns to login and prevents accessing protected pages', async ({ 
   // Login form still visible
   await expect(page.getByRole('button', { name: /sign in/i })).toBeVisible();
 });
+//This test verifies logout behavior and access control. It confirms the user gets returned to login after logging out, and it also checks that protected routes can’t be accessed directly once the session is gone.
+// It tests more than just button-clicking. It validates:
+
+// logout behavior
+// session invalidation
+// route guarding/security behavior

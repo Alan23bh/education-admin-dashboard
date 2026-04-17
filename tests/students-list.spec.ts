@@ -28,7 +28,7 @@ test('students list: search + filter + open profile', async ({ page }) => {
     .getByRole('button', { name: /at risk/i })
     .click();
 
-  // Still should show cards OR empty state (both are valid depending on your mock data)
+  // Still should show cards OR empty state (both are valid depending on mock data)
   const emptyState = page.getByRole('heading', { name: /no results found/i });
   if (await emptyState.isVisible()) {
     // If no results under that filter, clear search and ensure it recovers
@@ -51,3 +51,4 @@ test('students list: search + filter + open profile', async ({ page }) => {
   await page.goto(href);
   await expect(page).toHaveURL(/\/app\/students\/\d+/);
 });
+// This test covers a realistic student-list workflow. It verifies search, filtering, handling conditional UI states, and navigation into a student profile. I wanted one test that validates a core user journey rather than only checking isolated elements.

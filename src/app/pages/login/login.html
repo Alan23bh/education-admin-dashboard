@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <div class="login-wrap">
   <div class="login-card">
     <div class="brand">
@@ -12,13 +12,17 @@
     <form [formGroup]="form" (ngSubmit)="submit()" class="form">
       <label>
         <span>Email</span>
-        <input type="email" formControlName="email" placeholder="teacher@lyman.edu" />
+        <input type="email" formControlName="email" placeholder="Enter ANY valid email format" />
       </label>
 
       <label>
         <span>Password</span>
         <input type="password" formControlName="password" placeholder="••••••••" />
       </label>
+      <p class="demo-hint">
+        Demo login: Enter any valid email format (does not need to be real) and any password.
+        Example: <strong>123@mail.com</strong> / <strong>123456</strong>
+      </p>
 
       <button type="submit">Sign in</button>
 
