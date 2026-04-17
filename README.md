@@ -1,8 +1,8 @@
 # Education Analytics Admin Dashboard (Teacher Portal)
 
-A modern, responsive **Angular dashboard** designed for educators to monitor student performance, attendance trends, and risk indicators in real time.
+![Playwright Tests](https://github.com/Alan23bh/education-admin-dashboard/actions/workflows/playwright.yml/badge.svg)
 
-This project simulates a real-world school admin/teacher portal with interactive data visualization, clean UI architecture, and state-driven updates — built as a portfolio case study for frontend engineering roles.
+A modern, responsive **Angular dashboard** designed for educators to monitor student performance, attendance trends, and risk indicators in real time.
 
 ---
 
@@ -13,6 +13,49 @@ This project simulates a real-world school admin/teacher portal with interactive
   - Average grade
   - Attendance rate
   - At-risk student count
+
+## End-to-End Testing
+
+This project includes a Playwright E2E test suite that validates real user flows across the application.
+
+## Testing & CI
+
+This project includes automated end-to-end testing and continuous integration to validate real user flows.
+
+### Test Coverage
+
+The Playwright test suite validates key application behavior:
+
+- Authentication flow (login → dashboard redirect)
+- Dashboard rendering (KPI widgets)
+- Sidebar navigation
+- Student search and filtering
+- Navigation to student profile
+- Logout and route protection
+
+### CI Pipeline
+
+Tests run automatically on every push and pull request using **GitHub Actions**.
+
+Pipeline steps:
+
+1. Install dependencies
+2. Install Playwright browsers
+3. Start Angular dev server
+4. Execute Playwright test suite
+5. Upload HTML test report artifact
+
+Browsers tested:
+
+- Chromium
+- Firefox
+
+### Test Infrastructure
+
+- **Framework:** Playwright
+- **Browsers tested:** Chromium, Firefox
+- **Parallel execution:** enabled locally
+- **CI Integration:** GitHub Actions runs tests on every push and pull request  
 
 - **Attendance Trend Visualization**
   - Line chart showing attendance percentage over time
@@ -44,7 +87,13 @@ This project simulates a real-world school admin/teacher portal with interactive
 
 ## 🧠 What This Project Demonstrates
 
-- Strong **Angular fundamentals**:
+- **Testing Quality**:
+  - End-to-end testing with Playwright
+  - Cross-browser validation (Chromium, Firefox)
+  - Automated CI pipeline via GitHub Actions
+
+
+- **Angular fundamentals**:
   - Standalone components
   - Signals (`signal`, `computed`, `effect`)
   - Dependency injection
@@ -71,6 +120,8 @@ This project simulates a real-world school admin/teacher portal with interactive
 
 - **Framework:** Angular 21
 - **Language:** TypeScript
+- **Testing:** Playwright (E2E)
+- **CI/CD:** Github Actions
 - **Charts:** ApexCharts / ng-apexcharts
 - **Styling:** SCSS, CSS Grid, Flexbox
 - **State:** Angular Signals
@@ -91,7 +142,7 @@ https://education-admin-dashboard.vercel.app
 
 ## 🧪 Notes & Tradeoffs
 
-- This project focuses on **frontend architecture and UX**, not backend integration.
+- This project focuses on **frontend architecture and UX**.
 - Data is stored locally to simulate a real admin workflow.
 - Authentication is mocked for demo purposes.
 - Assignment tracking is planned as a future enhancement.
@@ -116,17 +167,9 @@ Frontend Developer
 - GitHub: https://github.com/Alan23bh
 - LinkedIn: *(https://www.linkedin.com/in/alan-hernandez-aa8458326/)*
 
----
 
-## 📝 Why This Project Exists
 
-This dashboard was built as a **case study** to demonstrate how a frontend developer approaches:
-- real-world data modeling
-- UI composition
-- responsive layouts
-- maintainable application structure
 
-It reflects how I build production-ready interfaces, not just visual demos.
 
 
 
