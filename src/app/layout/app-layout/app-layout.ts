@@ -8,7 +8,6 @@
 // })
 // export class AppLayout {
 
-// }
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -23,7 +22,10 @@ import { signal } from '@angular/core';
   styleUrl: './app-layout.scss',
 })
 export class AppLayout {
-  constructor(private auth: Auth, private router: Router) {}
+  constructor(
+    private auth: Auth,
+    private router: Router,
+  ) {}
 
   logout(): void {
     this.auth.logout();

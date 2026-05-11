@@ -41,10 +41,12 @@
       <p class="muted small">Today’s mark overwrites today if you click again.</p>
 
       <ul class="list" *ngIf="s.attendanceEntries.length; else noAttendance">
-        <li *ngFor="let a of s.attendanceEntries | slice:0:8">
+        <li *ngFor="let a of s.attendanceEntries | slice: 0 : 8">
           <span class="pill">{{ a.status }}</span>
           <span class="muted">{{ a.date }}</span>
-          <button class="icon" type="button" (click)="deleteAttendance(a.id)">Remove</button>
+          <button class="icon danger-text" type="button" (click)="deleteAttendance(a.id)">
+            Remove
+          </button>
         </li>
       </ul>
 
@@ -78,19 +80,24 @@
           />
         </label>
 
-        <button class="btn" type="button" (click)="addGrade()">Add grade</button>
+        <button class="btn add-btn" type="button" (click)="addGrade()">
+          <span class="material-icons btn__icon" aria-hidden="true">add</span>
+          <span>Add grade</span>
+        </button>
       </div>
 
       <div class="table" *ngIf="s.gradeEntries.length; else noGrades">
-        <div class="thead">
-          <span>Date</span><span>Type</span><span>Score</span><span></span>
-        </div>
+        <div class="thead"><span>Date</span><span>Type</span><span>Score</span><span></span></div>
 
-        <div class="trow" *ngFor="let g of s.gradeEntries | slice:0:10">
+        <div class="trow" *ngFor="let g of s.gradeEntries | slice: 0 : 10">
           <span class="muted">{{ g.date }}</span>
-          <span>{{ g.category }}</span>
-          <span><strong>{{ g.percent }}%</strong></span>
-          <button class="icon" type="button" (click)="deleteGrade(g.id)">Remove</button>
+          <span class="type-pill" [ngClass]="'type-pill--' + g.category">
+            {{ g.category }}
+          </span>
+          <span
+            ><strong>{{ g.percent }}%</strong></span
+          >
+          <button class="icon danger-text" type="button" (click)="deleteGrade(g.id)">Remove</button>
         </div>
       </div>
 
