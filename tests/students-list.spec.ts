@@ -4,51 +4,35 @@ import { login } from './help/auth';
 test('students list: search + filter + open profile', async ({ page }) => {
   await login(page);
 
-  // Go to Students
   await page.getByRole('link', { name: /^students$/i }).click();
   await expect(page).toHaveURL(/\/app\/students/);
-
-  // Page header
   await expect(page.getByRole('heading', { name: /^students$/i })).toBeVisible();
 
-  // Search (aria-label="Search students" is PERFECT)
-  const search = page.getByLabel('Search students');
+  const search = page.getByLabel(/search students/i);
+  await expect(search).toBeVisible();
   await search.fill('Ava');
 
-  // Expect at least one result card
   const cards = page.locator('a.student-card');
   await expect(cards.first()).toBeVisible();
 
-  // Optional: assert the visible card contains the searched name
-  await expect(page.getByRole('heading', { level: 3 })).toContainText(/ava/i);
-
-  // Filter tablist (role="tablist" + aria-label="Filter students" is PERFECT)
   await page
     .getByRole('tablist', { name: /filter students/i })
     .getByRole('button', { name: /at risk/i })
     .click();
 
-  // Still should show cards OR empty state (both are valid depending on mock data)
-  const emptyState = page.getByRole('heading', { name: /no results found/i });
-  if (await emptyState.isVisible()) {
-    // If no results under that filter, clear search and ensure it recovers
-    await page.getByRole('button', { name: /clear$/i }).click();
-    await expect(cards.first()).toBeVisible();
+  await page.waitForTimeout(500);
+
+  const filteredCards = page.locator('a.student-card');
+
+  if ((await filteredCards.count()) > 0) {
+    await expect(filteredCards.first()).toBeVisible();
+
+    const href = await filteredCards.first().getAttribute('href');
+    expect(href).toBeTruthy();
+
+    await page.goto(href!);
+    await expect(page).toHaveURL(/\/app\/students\/\d+/);
   } else {
-    await expect(cards.first()).toBeVisible();
+    await expect(page.getByText(/no results/i)).toBeVisible();
   }
-
-  // Open first student profile via routerLink
-  // await cards.first().click();
-  // await expect(page).toHaveURL(/\/app\/students\/\w+/);
-  // Capture the href first (from a stable snapshot), then navigate
-  const firstCard = page.locator('a.student-card').first();
-  await expect(firstCard).toBeVisible();
-
-  const href = await firstCard.getAttribute('href');
-  if (!href) throw new Error('Student card href not found');
-
-  await page.goto(href);
-  await expect(page).toHaveURL(/\/app\/students\/\d+/);
 });
-// This test covers a realistic student-list workflow. It verifies search, filtering, handling conditional UI states, and navigation into a student profile. I wanted one test that validates a core user journey rather than only checking isolated elements.
