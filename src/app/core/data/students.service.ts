@@ -38,6 +38,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: '2h ago',
     assignmentsDueNext7: 0,
     isAtRisk: false,
+    avatar: 'https://i.pravatar.cc/160?img=12',
   },
   {
     id: '2',
@@ -51,6 +52,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: 'Yesterday',
     assignmentsDueNext7: 0,
     isAtRisk: false,
+    avatar: 'https://i.pravatar.cc/160?img=13',
   },
   {
     id: '3',
@@ -64,6 +66,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: 'Today',
     assignmentsDueNext7: 0,
     isAtRisk: true,
+    avatar: 'https://i.pravatar.cc/160?img=14',
   },
   {
     id: '4',
@@ -77,6 +80,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: '1h ago',
     assignmentsDueNext7: 0,
     isAtRisk: false,
+    avatar: 'https://i.pravatar.cc/160?img=15',
   },
   {
     id: '5',
@@ -90,6 +94,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: '3 days ago',
     assignmentsDueNext7: 0,
     isAtRisk: false,
+    avatar: 'https://i.pravatar.cc/160?img=16',
   },
   {
     id: '6',
@@ -103,6 +108,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: 'Today',
     assignmentsDueNext7: 0,
     isAtRisk: false,
+    avatar: 'https://i.pravatar.cc/160?img=17',
   },
   {
     id: '7',
@@ -116,6 +122,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: 'Yesterday',
     assignmentsDueNext7: 0,
     isAtRisk: false,
+    avatar: 'https://i.pravatar.cc/160?img=21',
   },
   {
     id: '8',
@@ -129,6 +136,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: 'Today',
     assignmentsDueNext7: 0,
     isAtRisk: false,
+    avatar: 'https://i.pravatar.cc/160?img=22',
   },
   {
     id: '9',
@@ -142,6 +150,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: '2 days ago',
     assignmentsDueNext7: 0,
     isAtRisk: false,
+    avatar: 'https://i.pravatar.cc/160?img=32',
   },
   {
     id: '10',
@@ -155,6 +164,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: 'Today',
     assignmentsDueNext7: 0,
     isAtRisk: false,
+    avatar: 'https://i.pravatar.cc/160?img=18',
   },
 ];
 
@@ -163,7 +173,7 @@ function recomputeStudent(s: Student): Student {
   const avgFromEntries =
     s.gradeEntries.length > 0
       ? Math.round(
-          s.gradeEntries.reduce((sum, g) => sum + clamp(g.percent), 0) / s.gradeEntries.length
+          s.gradeEntries.reduce((sum, g) => sum + clamp(g.percent), 0) / s.gradeEntries.length,
         )
       : s.avgGrade;
 
@@ -171,10 +181,10 @@ function recomputeStudent(s: Student): Student {
   const attendanceFromEntries =
     s.attendanceEntries.length > 0
       ? Math.round(
-          (s.attendanceEntries.filter((a) => a.status === 'present' || a.status === 'tardy')
+          (s.attendanceEntries.filter((a) => a.status === 'Present' || a.status === 'Tardy')
             .length /
             s.attendanceEntries.length) *
-            100
+            100,
         )
       : s.attendanceRate;
 
@@ -198,7 +208,7 @@ function hydrateSeed(): Student[] {
       ...s,
       gradeEntries: [],
       attendanceEntries: [],
-    })
+    }),
   );
 }
 
@@ -215,7 +225,7 @@ function loadFromStorage(): Student[] | null {
         ...s,
         gradeEntries: Array.isArray(s.gradeEntries) ? s.gradeEntries : [],
         attendanceEntries: Array.isArray(s.attendanceEntries) ? s.attendanceEntries : [],
-      })
+      }),
     );
   } catch {
     return null;
@@ -239,7 +249,7 @@ export class StudentsService {
 
   private computeAttendanceRate(entries: { status: string }[]) {
     if (!entries.length) return 0;
-    const presentish = entries.filter((e) => e.status === 'present' || e.status === 'tardy').length;
+    const presentish = entries.filter((e) => e.status === 'Present' || e.status === 'Tardy').length;
     return Math.round((presentish / entries.length) * 100);
   }
 
@@ -275,7 +285,7 @@ export class StudentsService {
   // ---------- Grade CRUD ----------
   addGrade(
     studentId: string,
-    payload: { category: GradeCategory; percent: number; note?: string; date?: string }
+    payload: { category: GradeCategory; percent: number; note?: string; date?: string },
   ) {
     const entry: GradeEntry = {
       id: uid(),
@@ -314,7 +324,7 @@ export class StudentsService {
     if (before) this.log('grade:delete', before);
   }
 
-  markAttendance(studentId: string, status: 'present' | 'absent' | 'tardy') {
+  markAttendance(studentId: string, status: 'Present' | 'Absent' | 'Tardy') {
     const today = todayISO();
 
     this._students.update((list) =>
@@ -336,7 +346,7 @@ export class StudentsService {
           attendanceRate: rate,
           lastActive: 'Today',
         });
-      })
+      }),
     );
   }
 
@@ -355,14 +365,13 @@ export class StudentsService {
   // ---------- internal helper ----------
   private patchStudent(studentId: string, mutate: (s: Student) => Student) {
     this._students.update((list) =>
-      list.map((s) => (s.id === studentId ? recomputeStudent(mutate(s)) : s))
+      list.map((s) => (s.id === studentId ? recomputeStudent(mutate(s)) : s)),
     );
   }
 
   // optional: reset demo data button later
   resetToSeed() {
-  this._students.set(hydrateSeed());
-  this._activity.set([]);
-}
-
+    this._students.set(hydrateSeed());
+    this._activity.set([]);
+  }
 }

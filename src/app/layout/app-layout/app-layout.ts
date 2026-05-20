@@ -1,13 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-app-layout',
-//   imports: [],
-//   templateUrl: './app-layout.html',
-//   styleUrl: './app-layout.scss',
-// })
-// export class AppLayout {
-
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';

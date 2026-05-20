@@ -68,7 +68,7 @@ export class StudentProfile {
   }
 
   // Attendance quick actions
-  mark(status: 'present' | 'absent' | 'tardy') {
+  mark(status: 'Present' | 'Absent' | 'Tardy') {
     const s = this.student();
     if (!s) return;
     this.studentsService.markAttendance(s.id, status);

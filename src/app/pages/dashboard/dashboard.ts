@@ -41,7 +41,7 @@ export class Dashboard {
   });
 
   assignmentsDue = computed(() =>
-    this.students().reduce((sum, x) => sum + x.assignmentsDueNext7, 0)
+    this.students().reduce((sum, x) => sum + x.assignmentsDueNext7, 0),
   );
 
   // if you want “At-Risk Students” KPI to match your table logic:
@@ -51,12 +51,6 @@ export class Dashboard {
     { label: 'Total Students', value: this.totalStudents(), hint: 'Active roster' },
     { label: 'Average Grade', value: `${this.averageGrade()}%`, hint: 'All classes' },
     { label: 'Attendance Rate', value: `${this.attendanceRate()}%`, hint: 'Last 30 days' },
-    {
-      label: 'Assignments Due',
-      value: '—',
-      hint: 'Phase 3: assignments',
-    },
-
     { label: 'At-Risk Students', value: this.atRiskStudents(), hint: 'Auto-flagged' },
   ]);
 
@@ -111,7 +105,7 @@ export class Dashboard {
 
   // ---------- 1) TOP 5 (pure CSS bars)
   top5ByAvg = computed(() =>
-    [...this.students()].sort((a, b) => b.avgGrade - a.avgGrade).slice(0, 5)
+    [...this.students()].sort((a, b) => b.avgGrade - a.avgGrade).slice(0, 5),
   );
 
   // ---------- 2) AT-RISK TABLE

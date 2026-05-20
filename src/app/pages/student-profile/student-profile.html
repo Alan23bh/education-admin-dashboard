@@ -1,13 +1,45 @@
 <a class="back" routerLink="/app/students">← Back to Students</a>
 
 <section *ngIf="student() as s; else notFound">
-  <header class="page-header">
-    <h1>{{ s.firstName }} {{ s.lastName }}</h1>
-    <p class="muted">Grade {{ s.gradeLevel }} • {{ s.status }}</p>
+  <header class="profile-hero">
+    <div class="profile-identity">
+      <img
+        class="profile-avatar"
+        [src]="s.avatar || 'https://i.pravatar.cc/160?u=' + s.id"
+        [alt]="s.firstName + ' ' + s.lastName"
+      />
+
+      <div>
+        <span class="profile-status" [class.risk]="s.status === 'at-risk'">
+          {{ s.status === 'at-risk' ? 'At Risk' : 'On Track' }}
+        </span>
+
+        <h1>{{ s.firstName }} {{ s.lastName }}</h1>
+
+        <p class="muted">Grade {{ s.gradeLevel }} • Last active {{ s.lastActive }}</p>
+      </div>
+    </div>
+
+    <div class="profile-kpis">
+      <div>
+        <span>GPA</span>
+        <strong>{{ s.gpa }}</strong>
+      </div>
+
+      <div>
+        <span>Average</span>
+        <strong>{{ s.avgGrade }}%</strong>
+      </div>
+
+      <div>
+        <span>Attendance</span>
+        <strong>{{ s.attendanceRate }}%</strong>
+      </div>
+    </div>
   </header>
 
   <div class="profile-grid">
-    <div class="panel">
+    <!-- <div class="panel">
       <h3>Overview</h3>
 
       <div class="stats">
@@ -26,16 +58,18 @@
           <span class="stat-value">{{ s.attendanceRate }}%</span>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Attendance -->
     <div class="panel">
       <h3>Attendance</h3>
 
       <div class="row">
-        <button class="btn" type="button" (click)="mark('present')">Present</button>
-        <button class="btn" type="button" (click)="mark('tardy')">Tardy</button>
-        <button class="btn danger" type="button" (click)="mark('absent')">Absent</button>
+        <button class="btn present" type="button" (click)="mark('Present')">Present</button>
+
+        <button class="btn tardy" type="button" (click)="mark('Tardy')">Tardy</button>
+
+        <button class="btn absent" type="button" (click)="mark('Absent')">Absent</button>
       </div>
 
       <p class="muted small">Today’s mark overwrites today if you click again.</p>
@@ -44,8 +78,13 @@
         <li *ngFor="let a of s.attendanceEntries | slice: 0 : 8">
           <span class="pill">{{ a.status }}</span>
           <span class="muted">{{ a.date }}</span>
-          <button class="icon danger-text" type="button" (click)="deleteAttendance(a.id)">
-            Remove
+          <button
+            class="delete-btn"
+            type="button"
+            aria-label="Remove attendance entry"
+            (click)="deleteAttendance(a.id)"
+          >
+            <span class="material-icons" aria-hidden="true">delete</span>
           </button>
         </li>
       </ul>
@@ -97,7 +136,14 @@
           <span
             ><strong>{{ g.percent }}%</strong></span
           >
-          <button class="icon danger-text" type="button" (click)="deleteGrade(g.id)">Remove</button>
+          <button
+            class="delete-btn"
+            type="button"
+            aria-label="Remove grade entry"
+            (click)="deleteGrade(g.id)"
+          >
+            <span class="material-icons" aria-hidden="true">delete</span>
+          </button>
         </div>
       </div>
 
