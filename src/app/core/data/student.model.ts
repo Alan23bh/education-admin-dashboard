@@ -28,7 +28,7 @@ export interface GradeEntry {
   note?: string;
 }
 
-export type AttendanceStatus = 'Present' | 'Absent' | 'Tardy';
+export type AttendanceStatus = 'present' | 'absent' | 'tardy';
 
 export interface AttendanceEntry {
   id: string;

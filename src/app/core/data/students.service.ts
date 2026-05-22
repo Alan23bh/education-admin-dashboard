@@ -164,7 +164,7 @@ const MOCK: Omit<Student, 'gradeEntries' | 'attendanceEntries'>[] = [
     lastActive: 'Today',
     assignmentsDueNext7: 0,
     isAtRisk: false,
-    avatar: 'https://i.pravatar.cc/160?img=18',
+    avatar: 'https://i.pravatar.cc/160?img=1',
   },
 ];
 
@@ -181,7 +181,7 @@ function recomputeStudent(s: Student): Student {
   const attendanceFromEntries =
     s.attendanceEntries.length > 0
       ? Math.round(
-          (s.attendanceEntries.filter((a) => a.status === 'Present' || a.status === 'Tardy')
+          (s.attendanceEntries.filter((a) => a.status === 'present' || a.status === 'tardy')
             .length /
             s.attendanceEntries.length) *
             100,
@@ -249,7 +249,7 @@ export class StudentsService {
 
   private computeAttendanceRate(entries: { status: string }[]) {
     if (!entries.length) return 0;
-    const presentish = entries.filter((e) => e.status === 'Present' || e.status === 'Tardy').length;
+    const presentish = entries.filter((e) => e.status === 'present' || e.status === 'tardy').length;
     return Math.round((presentish / entries.length) * 100);
   }
 
@@ -324,7 +324,7 @@ export class StudentsService {
     if (before) this.log('grade:delete', before);
   }
 
-  markAttendance(studentId: string, status: 'Present' | 'Absent' | 'Tardy') {
+  markAttendance(studentId: string, status: 'present' | 'absent' | 'tardy') {
     const today = todayISO();
 
     this._students.update((list) =>

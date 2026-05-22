@@ -101,22 +101,22 @@
   }
 }
 
-// .muted {
-//   color: #7988a5;
-//   font-size: 1.5rem;
-//   line-height: 1.5;
-// }
-
 .small {
   font-size: 16px;
 }
+.activity-panel {
+  height: 340px;
+  overflow: hidden;
+}
 
 .activity {
+  max-height: 240px;
   margin: 0;
   padding-left: 20px;
   font-size: 16px;
   line-height: 1.7;
   color: #111827;
+  overflow-y: auto;
 }
 
 .bars {
@@ -198,4 +198,30 @@
   .grid {
     grid-template-columns: 1fr;
   }
+}
+.grid {
+  align-items: start;
+}
+
+.at-risk-panel {
+  max-height: 390px;
+  overflow: hidden;
+}
+
+.at-risk-table {
+  max-height: 270px;
+  overflow-y: auto;
+}
+
+.at-risk-table .thead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+apx-chart {
+  display: block;
+  max-height: 280px;
+}
+.chart-panel {
+  height: 390px;
 }

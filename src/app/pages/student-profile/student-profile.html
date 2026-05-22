@@ -39,37 +39,16 @@
   </header>
 
   <div class="profile-grid">
-    <!-- <div class="panel">
-      <h3>Overview</h3>
-
-      <div class="stats">
-        <div class="stat-row">
-          <span class="stat-label">GPA</span>
-          <span class="stat-value">{{ s.gpa }}</span>
-        </div>
-
-        <div class="stat-row">
-          <span class="stat-label">Average Grade</span>
-          <span class="stat-value">{{ s.avgGrade }}%</span>
-        </div>
-
-        <div class="stat-row">
-          <span class="stat-label">Attendance</span>
-          <span class="stat-value">{{ s.attendanceRate }}%</span>
-        </div>
-      </div>
-    </div> -->
-
     <!-- Attendance -->
     <div class="panel">
       <h3>Attendance</h3>
 
       <div class="row">
-        <button class="btn present" type="button" (click)="mark('Present')">Present</button>
+        <button class="btn present" type="button" (click)="mark('present')">Present</button>
 
-        <button class="btn tardy" type="button" (click)="mark('Tardy')">Tardy</button>
+        <button class="btn tardy" type="button" (click)="mark('tardy')">Tardy</button>
 
-        <button class="btn absent" type="button" (click)="mark('Absent')">Absent</button>
+        <button class="btn absent" type="button" (click)="mark('absent')">Absent</button>
       </div>
 
       <p class="muted small">Today’s mark overwrites today if you click again.</p>

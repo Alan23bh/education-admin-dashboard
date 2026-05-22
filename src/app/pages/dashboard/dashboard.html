@@ -14,7 +14,7 @@
   </article>
 </section>
 <section class="grid">
-  <section class="panel">
+  <section class="panel chart-panel">
     <h3>Attendance Trend</h3>
     <p class="muted small">Last {{ attendanceWindowDays }} days (present + tardy)</p>
 
@@ -28,11 +28,11 @@
       [yaxis]="attendanceYAxis()"
     ></apx-chart>
   </section>
-  <section class="panel">
+  <section class="panel at-risk-panel chart-panel">
     <h3>At-Risk Students</h3>
     <p class="muted small">Auto-flagged from KPIs</p>
 
-    <div class="table" *ngIf="atRiskList().length; else noneRisk">
+    <div class="table at-risk-table" *ngIf="atRiskList().length; else noneRisk">
       <div class="thead">
         <div>Student</div>
         <div>Avg</div>
@@ -53,7 +53,7 @@
     </ng-template>
   </section>
 
-  <div class="panel">
+  <div class="panel activity-panel">
     <h3>Grade Distribution</h3>
     <p class="muted small">Buckets by average grade</p>
 
@@ -65,7 +65,7 @@
     ></apx-chart>
   </div>
 
-  <div class="panel">
+  <div class="panel activity-panel">
     <h3>Recent Activity</h3>
 
     <ul class="activity" *ngIf="recentActivity().length; else noActivity">
