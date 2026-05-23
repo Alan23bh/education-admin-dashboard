@@ -10,13 +10,15 @@
 
   <aside class="sidebar" [class.open]="sidebarOpen()">
     <div class="sidebar__brand">
-      <div class="logo" aria-hidden="true">
-        <span>LH</span>
-      </div>
-      <div class="name">
-        <strong>Lyman HS</strong>
-        <span>Teacher Portal</span>
-      </div>
+      <a class="brand-link" routerLink="/app/dashboard">
+        <div class="logo" aria-hidden="true">
+          <span>LH</span>
+        </div>
+        <div class="name">
+          <strong>Lyman HS</strong>
+          <span>Teacher Portal</span>
+        </div></a
+      >
       <button
         class="icon-btn close-btn"
         type="button"
