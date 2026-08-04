@@ -1,16 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test('user can login and reach dashboard', async ({ page }) => {
+test('user can enter the demo dashboard', async ({ page }) => {
   await page.goto('/login');
 
-  // Fill form
-  await page.getByLabel('Email').fill('alan23bh@gmail.com');
-  await page.getByLabel('Password').fill('123456');
+  await expect(page.getByText(/portfolio demo — no account required/i)).toBeVisible();
 
-  // Click login
-  await page.getByRole('button', { name: 'Sign in' }).click();
-
-  // Assert navigation away from login
+  await page.getByRole('button', { name: /enter demo dashboard/i }).click();
 
   await expect(page).toHaveURL(/\/app\/dashboard/);
 });
