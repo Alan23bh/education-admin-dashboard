@@ -1,32 +1,22 @@
-<!doctype html>
 <div class="login-wrap">
-  <div class="login-card">
+  <main class="login-card">
     <div class="brand">
-      <div class="logo"></div>
+      <div class="logo" aria-hidden="true">
+        <span>LH</span>
+      </div>
+
       <div>
         <h1>Lyman HS</h1>
         <p>Teacher Portal</p>
       </div>
     </div>
 
-    <form [formGroup]="form" (ngSubmit)="submit()" class="form">
-      <label>
-        <span>Email</span>
-        <input type="email" formControlName="email" placeholder="Enter ANY valid email format" />
-      </label>
+    <section class="demo-content">
+      <h2>Teacher Dashboard Demo</h2>
 
-      <label>
-        <span>Password</span>
-        <input type="password" formControlName="password" placeholder="••••••••" />
-      </label>
-      <p class="demo-hint">
-        Demo login: Enter any valid email format (does not need to be real) and any password.
-        Example: <strong>123@mail.com</strong> / <strong>123456</strong>
-      </p>
+      <p>Portfolio demo — no account required.</p>
 
-      <button type="submit">Sign in</button>
-
-      <p class="error" *ngIf="error">{{ error }}</p>
-    </form>
-  </div>
+      <button type="button" (click)="enterDashboard()">Enter Demo Dashboard</button>
+    </section>
+  </main>
 </div>
